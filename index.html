@@ -1,0 +1,256 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Nadine's Food Catering Services</title>
+
+  <!-- Bootstrap CSS -->
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet">
+
+  <!-- Bootstrap Icons -->
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap-icons/font/bootstrap-icons.css" rel="stylesheet">
+
+  <!-- Admin dashboard -->
+<link rel="stylesheet" href="admin.html">
+
+<link rel="stylesheet" href="admin-login.html">
+
+  <style>
+    body {
+      font-family: 'Segoe UI', sans-serif;
+      scroll-behavior: smooth;
+    }
+
+    /* Hero */
+    .hero {
+      background: linear-gradient(rgba(0,0,0,0.5), rgba(0,0,0,0.5)),
+      url('https://source.unsplash.com/1600x700/?food,catering') center/cover no-repeat;
+      color: white;
+      padding: 120px 20px;
+      text-align: center;
+    }
+
+    .hero h1 {
+      font-size: 3rem;
+    }
+
+    /* Menu cards */
+    .menu-card img {
+      height: 200px;
+      object-fit: cover;
+    }
+
+    .menu-card {
+      transition: transform 0.3s;
+    }
+
+    .menu-card:hover {
+      transform: translateY(-5px);
+    }
+
+    /* Dark mode */
+    body.dark-mode {
+      background-color: #121212;
+      color: #f1f1f1;
+    }
+
+    body.dark-mode .card,
+    body.dark-mode .navbar,
+    body.dark-mode footer {
+      background-color: #1e1e1e !important;
+      color: #f1f1f1;
+    }
+  </style>
+</head>
+
+
+<body>
+
+<!-- NAVBAR -->
+<nav class="navbar navbar-expand-lg navbar-dark bg-danger sticky-top">
+  <div class="container">
+    <a class="navbar-brand fw-bold" href="#">🍴 Nadine's Catering</a>
+
+    <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav">
+      <span class="navbar-toggler-icon"></span>
+    </button>
+
+    <div class="collapse navbar-collapse" id="navbarNav">
+      <ul class="navbar-nav ms-auto">
+        <li class="nav-item"><a class="nav-link" href="#home">Home</a></li>
+        <li class="nav-item"><a class="nav-link" href="#menu">Menu</a></li>
+        <li class="nav-item"><a class="nav-link" href="#contact">Contact</a></li>
+        <li class="nav-item">
+          <button class="btn btn-sm btn-light ms-2" id="darkToggle">
+            <i class="bi bi-moon"></i>
+          </button>
+        </li>
+      </ul>
+    </div>
+  </div>
+</nav>
+
+<!-- HERO -->
+<section class="hero" id="home">
+  <h1>Delicious Meals Made with Love</h1>
+  <p class="lead">Fresh • Tasty • Affordable</p>
+  <a href="#menu" class="btn btn-warning btn-lg mt-3">View Menu</a>
+</section>
+
+<!-- MENU -->
+<!-- ORDER SECTION -->
+<section class="py-5 bg-light" id="order">
+  <div class="container">
+    <h2 class="text-center text-danger mb-4">Place Your Order</h2>
+
+    <div class="row justify-content-center">
+      <div class="col-md-6">
+
+        <div class="card shadow border-0 rounded-4">
+          <div class="card-body p-4">
+
+            <form id="orderForm">
+              <!-- Customer Name -->
+              <div class="form-floating mb-3">
+                <input type="text" class="form-control" id="customerName" placeholder="Name" required>
+                <label>Your Name</label>
+              </div>
+
+              <!-- Food -->
+              <div class="form-floating mb-3">
+                <select class="form-select" id="food" required>
+                  <option value="">Select Food</option>
+                  <option value="Menudo">Menudo - ₱120</option>
+                  <option value="Adobo">Chicken Adobo - ₱130</option>
+                  <option value="Bicol Express">Bicol Express - ₱140</option>
+                </select>
+                <label>Food Item</label>
+              </div>
+
+              <!-- Quantity -->
+              <div class="form-floating mb-3">
+                <input type="number" class="form-control" id="quantity" min="1" value="1" required>
+                <label>Quantity</label>
+              </div>
+
+              <!-- Total -->
+              <div class="mb-3">
+                <strong>Total Price: ₱<span id="totalPrice">0</span></strong>
+              </div>
+
+              <div class="d-grid">
+                <button class="btn btn-danger btn-lg" type="submit">
+                  Place Order
+                </button>
+              </div>
+
+              <p class="text-center mt-3 fw-semibold" id="orderStatus"></p>
+            </form>
+
+          </div>
+        </div>
+
+      </div>
+    </div>
+  </div>
+</section>
+
+
+<!-- CONTACT -->
+<section class="py-5 bg-light" id="contact">
+  <div class="container">
+    <div class="row justify-content-center">
+      <div class="col-md-6">
+
+        <div class="card shadow border-0 rounded-4">
+          <div class="card-body p-4">
+            <h3 class="text-center mb-3">Get in Touch</h3>
+
+            <form id="contactForm" novalidate>
+              <div class="form-floating mb-3">
+                <input type="text" class="form-control" required placeholder="Name">
+                <label>Your Name</label>
+              </div>
+
+              <div class="form-floating mb-3">
+                <input type="email" class="form-control" required placeholder="Email">
+                <label>Your Email</label>
+              </div>
+
+              <div class="form-floating mb-3">
+                <textarea class="form-control" style="height:120px" required></textarea>
+                <label>Your Message</label>
+              </div>
+
+              <div class="d-grid">
+                <button class="btn btn-danger btn-lg" type="submit">
+                  <span class="spinner-border spinner-border-sm d-none" id="spinner"></span>
+                  Send Message
+                </button>
+              </div>
+
+              <p class="text-center mt-3 fw-semibold" id="formStatus"></p>
+            </form>
+          </div>
+        </div>
+
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- FOOTER -->
+<footer class="bg-danger text-white text-center p-3">
+  <p class="mb-0">&copy; 2025 Nadine's Catering Services</p>
+</footer>
+
+<!-- Bootstrap JS -->
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js"></script>
+
+<script>
+const prices = {
+  "Menudo": 120,
+  "Adobo": 130,
+  "Bicol Express": 140
+};
+
+const food = document.getElementById("food");
+const qty = document.getElementById("quantity");
+const totalPrice = document.getElementById("totalPrice");
+const orderForm = document.getElementById("orderForm");
+const orderStatus = document.getElementById("orderStatus");
+
+function updateTotal() {
+  const price = prices[food.value] || 0;
+  totalPrice.textContent = price * qty.value;
+}
+
+food.addEventListener("change", updateTotal);
+qty.addEventListener("input", updateTotal);
+
+orderForm.addEventListener("submit", e => {
+  e.preventDefault();
+
+  const order = {
+    name: customerName.value,
+    food: food.value,
+    quantity: qty.value,
+    total: totalPrice.textContent,
+    date: new Date().toLocaleString()
+  };
+
+  let orders = JSON.parse(localStorage.getItem("orders")) || [];
+  orders.push(order);
+  localStorage.setItem("orders", JSON.stringify(orders));
+
+  orderStatus.className = "text-success";
+  orderStatus.textContent = "✅ Order placed successfully!";
+  orderForm.reset();
+  totalPrice.textContent = "0";
+});
+</script>
+
+
+</body>
+</html>
